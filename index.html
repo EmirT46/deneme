@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — About & Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#041426; /* very dark navy */
+      --bg-2:#072b4a; /* deep blue */
+      --accent:#1e90ff; /* bright accent */
+      --muted:#9fb3c8;
+      --card:#0b2940;
+      --glass: rgba(255,255,255,0.03);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#eaf6ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 20px;
+      position:relative;overflow-x:hidden;
+    }
+
+    /* animated yellow blobs */
+    .bg-anim{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;z-index:0}
+    .blob{
+      position:absolute;border-radius:50%;filter:blur(40px);opacity:0.35;transform:translate3d(0,0,0);
+      background:radial-gradient(circle at 30% 30%, rgba(255,221,92,0.95), rgba(255,183,0,0.35));
+      width:360px;height:360px;
+      animation:float 12s ease-in-out infinite;
+    }
+    .blob.b1{left:-80px;top:10%;animation-duration:14s}
+    .blob.b2{right:-120px;top:35%;width:260px;height:260px;animation-duration:10s}
+    .blob.b3{left:10%;bottom:-100px;width:420px;height:420px;animation-duration:18s}
+    @keyframes float{
+      0%{transform:translateY(0) translateX(0) scale(1)}
+      25%{transform:translateY(-30px) translateX(20px) scale(1.05)}
+      50%{transform:translateY(0) translateX(-10px) scale(0.98)}
+      75%{transform:translateY(30px) translateX(10px) scale(1.02)}
+      100%{transform:translateY(0) translateX(0) scale(1)}
+    }
+
+    .container{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--bg-2),#073b61);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:18px;box-shadow:0 6px 18px rgba(2,8,23,0.6)}
+    .brand h1{font-size:18px;margin:0}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:var(--accent)}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:36px}
+    .intro{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:14px;box-shadow:0 10px 30px rgba(3,12,25,0.6)}
+    .intro h2{margin:0 0 8px 0;font-size:28px}
+    .intro p{margin:0 0 16px;color:var(--muted)}
+    .cta-group{display:flex;gap:12px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.07);padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;text-decoration:none;color:inherit;display:inline-flex;align-items:center;justify-content:center}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4ab3ff);color:#042033;border:none}
+
+    .card-side{background:var(--card);padding:18px;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
+    .avatar{width:80px;height:80px;border-radius:12px;background:linear-gradient(135deg,#0f3b5a,#08263a);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700}
+    .meta{margin-left:12px}
+    .meta small{display:block;color:var(--muted)}
+
+    section{margin-bottom:28px}
+
+    /* About */
+    .about{display:flex;gap:18px;align-items:flex-start}
+    .about p{color:var(--muted);margin:0}
+    .tags{display:flex;gap:8px;margin-top:12px}
+    .tag{background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
+
+    /* Games */
+    .games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .game-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;display:flex;flex-direction:column;gap:12px}
+    .thumb{height:140px;border-radius:8px;background:linear-gradient(120deg,#083049,#0b3f5d);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
+    .game-card h3{margin:0;font-size:16px}
+    .game-card p{margin:0;color:var(--muted);font-size:13px}
+    .game-actions{display:flex;gap:8px;margin-top:auto}
+
+    footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-anim" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>
+          <h1>Emirhan TÜRKYILMAZ</h1>
+          <small style="color:var(--muted)">Game Creator</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h2>I'm Emir</h2>
+          <p>Computer Science student and independent game developer. I focus on quick, polished prototypes and enjoyable gameplay loops.</p>
+          <div class="tags">
+            <span class="tag">Dokuz Eylul University</span>
+            <span class="tag">Computer Science</span>
+            <span class="tag">Game Creator</span>
+            <span class="tag">Born 2006</span>
+          </div>
+          <div style="height:14px"></div>
+          <div class="cta-group">
+            <a class="btn primary" href="#games">See My Games</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="card-side">
+          <div style="display:flex;align-items:center">
+            <div class="avatar">ET</div>
+            <div class="meta">
+              <strong>Emir</strong>
+              <small>Computer Science · Game Developer</small>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;font-size:13px;color:var(--muted)">
+            Short bio: I prototype in Unity/C# and build small, playable projects with an emphasis on mechanics and feel.
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <h3 style="margin-top:0">About</h3>
+        <div class="about">
+          <div style="flex:1">
+            <p>
+              I'm a Computer Science student at Dokuz Eylul University and a game developer — working on mechanics, prototyping and indie game projects.
+            </p>
+            <p style="margin-top:12px;color:var(--muted)">Birth year: 2006</p>
+          </div>
+          <div style="width:220px">
+            <div style="background:linear-gradient(135deg,#062a47,#083e5a);padding:12px;border-radius:10px">
+              <strong style="display:block">Skills</strong>
+              <ul style="margin:8px 0 0 18px;color:var(--muted)">
+                <li>Unity / C#</li>
+                <li>Gameplay prototyping</li>
+                <li>Basic shaders & effects</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="games">
+        <h3>Games</h3>
+        <div class="games-grid">
+
+          <article class="game-card">
+            <div class="thumb">Game 1 — Climbing Theme</div>
+            <h3>Climb &amp; Slip</h3>
+            <p>Fast prototype — challenging climbing platformer with tight controls and short, dynamic levels.</p>
+            <div class="game-actions">
+              <a class="btn primary" href="#" role="button">Steam Page</a>
+              <a class="btn" href="#" role="button">Preview</a>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <div class="thumb">Game 2 — Mini Puzzle</div>
+            <h3>Puzzle Drop</h3>
+            <p>Short play sessions with minimal visuals and deeper mechanics.</p>
+            <div class="game-actions">
+              <a class="btn primary" href="#">Steam Page</a>
+              <a class="btn" href="#">Preview</a>
+            </div>
+          </article>
+
+          
+
+        </div>
+      </section>
+
+      <section id="contact">
+        <h3>Contact</h3>
+        <p style="color:var(--muted)">For games, collaborations or feedback, reach me at: <strong style="color:var(--accent)">emirhan.turkyilmaz@ogr.deu.edu.tr</strong></p>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <strong>Emir</strong> — Game Creator</div>
+      
+    </footer>
+  </div>
+
+  <script>
+    // smooth scroll for hash links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href = a.getAttribute('href');
+        if(href.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth'});
+        }
+      })
+    })
+  </script>
+</body>
+</html>
