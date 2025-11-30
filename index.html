@@ -13,7 +13,7 @@
       --bg-dark: #050a14;
       --bg-panel: rgba(13, 25, 41, 0.7);
       --primary: #3b82f6;      
-      --accent: #1e90ff;       
+      --accent: #1e90ff;        
       --text-main: #f0f9ff;
       --text-muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.08);
@@ -343,12 +343,44 @@
       to { opacity: 1; }
     }
     
+    /* === DÜZELTİLMİŞ MOBİL GÖRÜNÜM === */
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .profile-card { display: none; }
+      .hero { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+        gap: 40px; 
+      }
+      
+      /* Profil kartını geri getirdik */
+      .profile-card { 
+        display: flex; 
+        margin-top: 20px;
+      }
+      
       .about-container { flex-direction: column; }
       .skills-box { width: 100%; }
-      nav { display: none; } /* Mobile menu placeholder */
+      
+      /* Navbar'ı geri getirdik ve düzenledik */
+      nav { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 20px;
+      }
+      
+      /* Linkleri ortaladık */
+      .nav-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-links a {
+        margin-left: 0;
+        padding: 6px 12px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 15px;
+      }
     }
   </style>
 </head>
@@ -378,14 +410,13 @@
     <main>
       <section class="hero">
         <div class="hero-content">
-          <div class="tag-container">
-            <span class="tag">Dokuz Eylul University</span>
+          <div class="tag-container" style="justify-content: center;"> <span class="tag">Dokuz Eylul University</span>
             <span class="tag">Computer Science</span>
             <span class="tag">Game Creator</span>
             
           </div>
           <h2>I'm Emir</h2>
-          <p>
+          <p style="margin-left: auto; margin-right: auto;">
             Computer Science student and independent game developer. I focus on quick, polished prototypes and enjoyable gameplay loops.
           </p>
           <div>
@@ -513,4 +544,3 @@
   </script>
 </body>
 </html>
-
