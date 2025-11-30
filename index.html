@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Emirhan Türkyılmaz | Game Developer</title>
+  <title>Portfolio — Emirhan Türkyılmaz</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     :root {
       /* Modern Dark Palette */
       --bg-dark: #050a14;
       --bg-panel: rgba(13, 25, 41, 0.7);
-      --primary: #3b82f6;      /* Modern Blue */
-      --accent: #00f0ff;       /* Cyber Cyan */
+      --primary: #3b82f6;      
+      --accent: #1e90ff;       
       --text-main: #f0f9ff;
       --text-muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.08);
@@ -36,6 +38,7 @@
       font-family: var(--font-body);
       line-height: 1.6;
       overflow-x: hidden;
+      scroll-behavior: smooth; /* Yumuşak kaydırma */
     }
 
     /* Background Spotlights */
@@ -73,14 +76,23 @@
       padding: 30px 0;
       margin-bottom: 60px;
     }
-    .logo {
-      font-family: var(--font-heading);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-box {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--bg-panel), #073b61);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
-      font-size: 24px;
-      background: linear-gradient(90deg, #fff, var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
+      color: var(--accent);
+      font-family: var(--font-heading);
     }
     .nav-links a {
       color: var(--text-muted);
@@ -103,18 +115,18 @@
       animation: fadeIn 1s forwards 0.2s;
     }
 
-    .hero-content h1 {
+    .hero-content h2 {
       font-family: var(--font-heading);
-      font-size: 56px;
+      font-size: 48px;
       line-height: 1.1;
       margin: 0 0 20px 0;
-      letter-spacing: -2px;
+      letter-spacing: -1px;
     }
     .hero-content p {
       color: var(--text-muted);
       font-size: 18px;
       margin-bottom: 30px;
-      max-width: 480px;
+      max-width: 500px;
     }
     .tag-container {
       display: flex;
@@ -165,17 +177,17 @@
       pointer-events: none;
     }
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #1e293b);
+      background: linear-gradient(135deg, #0f3b5a, #08263a);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: 16px;
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 20px rgba(30, 144, 255, 0.2);
     }
 
     /* Buttons */
@@ -183,20 +195,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 28px;
+      padding: 12px 24px;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
       font-size: 15px;
+      gap: 8px;
     }
     .btn-primary {
-      background: var(--text-main);
-      color: var(--bg-dark);
+      background: linear-gradient(90deg, var(--accent), #4ab3ff);
+      color: #042033;
     }
     .btn-primary:hover {
-      background: var(--accent);
       box-shadow: 0 0 15px var(--accent);
+      transform: translateY(-2px);
     }
     .btn-outline {
       border: 1px solid rgba(255,255,255,0.2);
@@ -214,7 +227,7 @@
       align-items: center;
       margin-bottom: 40px;
     }
-    .section-header h2 {
+    .section-header h3 {
       font-family: var(--font-heading);
       font-size: 32px;
       margin: 0;
@@ -224,6 +237,20 @@
       height: 1px;
       flex: 1;
       background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* About Section */
+    .about-container {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 100px;
+    }
+    .skills-box {
+      width: 250px;
+      background: linear-gradient(135deg, rgba(6, 42, 71, 0.5), rgba(8, 62, 90, 0.5));
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 12px;
     }
 
     /* Games Grid */
@@ -240,7 +267,8 @@
       border-radius: var(--radius);
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      display: flex;
+      flex-direction: column;
     }
     .game-card:hover {
       transform: translateY(-5px);
@@ -249,64 +277,65 @@
     }
 
     .thumb {
-      height: 180px;
-      background: #111;
+      height: 160px;
+      background: linear-gradient(120deg,#083049,#0b3f5d);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      color: rgba(255,255,255,0.2);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Mock Thumbnails based on Interest */
-    .thumb.parkour {
-      background: linear-gradient(45deg, #2c3e50, #3498db);
-    }
-    .thumb.horror {
-      background: linear-gradient(45deg, #2c0505, #520808);
-    }
-    .thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5,10,20,0.8), transparent);
+      color: rgba(255,255,255,0.4);
+      font-family: var(--font-heading);
     }
 
     .card-content {
       padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     .game-card h3 { margin: 0 0 8px 0; font-family: var(--font-heading); font-size: 20px; }
-    .game-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+    .game-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; flex: 1; }
     
-    .tech-stack {
+    .game-actions {
       display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-top: auto;
     }
-    .tech-badge {
-      font-size: 10px;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 4px;
-      color: var(--text-muted);
-      font-weight: 600;
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 13px;
     }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
+    /* Contact Section */
+    .contact-section {
       text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
     }
-    .contact-link {
-      color: var(--accent);
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
       text-decoration: none;
-      font-weight: 600;
+      font-size: 24px;
+      transition: all 0.2s;
+    }
+    .social-btn:hover {
+      background: var(--accent);
+      color: #042033;
+      transform: translateY(-3px);
     }
 
     /* Animations */
@@ -316,11 +345,10 @@
     
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-content h1 { font-size: 42px; }
-      .profile-card { display: none; } /* Hide sidebar on mobile for cleaner look */
-      .hero-content p { margin: 0 auto 30px; }
-      .tag-container { justify-content: center; }
-      nav { display: none; } /* Simple hiding for mobile, ideally replace with burger */
+      .profile-card { display: none; }
+      .about-container { flex-direction: column; }
+      .skills-box { width: 100%; }
+      nav { display: none; } /* Mobile menu placeholder */
     }
   </style>
 </head>
@@ -330,116 +358,156 @@
   <div class="spotlight s2"></div>
 
   <div class="container">
-    <nav>
-      <div class="logo">ET.Dev</div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="mailto:emirhan.turkyilmaz@ogr.deu.edu.tr">Contact</a>
-      </div>
-    </nav>
+    <header>
+      <nav>
+        <div class="brand">
+          <div class="logo-box">E</div>
+          <div style="line-height:1.2">
+            <div style="font-weight:700; font-family:var(--font-heading)">Emirhan TÜRKYILMAZ</div>
+            <small style="color:var(--text-muted); font-size:12px">Game Creator</small>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#games">Games</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
 
     <main>
       <section class="hero">
         <div class="hero-content">
           <div class="tag-container">
-            <span class="tag">UNITY DEVELOPER</span>
-            <span class="tag">C# EXPERT</span>
-            <span class="tag">PIXEL ARTIST</span>
+            <span class="tag">Dokuz Eylul University</span>
+            <span class="tag">Computer Science</span>
+            <span class="tag">Game Creator</span>
+            <span class="tag">Born 2006</span>
           </div>
-          <h1>Building Worlds,<br><span style="color:var(--text-muted)">One Pixel at a Time.</span></h1>
+          <h2>I'm Emir</h2>
           <p>
-            Hi, I'm <strong>Emirhan</strong>. A Computer Science student at Dokuz Eylul University. 
-            I specialize in crafting immersive 2D experiences, tight gameplay mechanics, and atmospheric environments.
+            Computer Science student and independent game developer. I focus on quick, polished prototypes and enjoyable gameplay loops.
           </p>
           <div>
-            <a href="#projects" class="btn btn-primary">View My Games</a>
-            <a href="mailto:emirhan.turkyilmaz@ogr.deu.edu.tr" class="btn btn-outline">Contact Me</a>
+            <a href="#games" class="btn btn-primary">See My Games</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
           </div>
         </div>
 
         <aside class="glass-card profile-card">
-          <div class="avatar">E</div>
-          <h3 style="margin: 0 0 5px 0">Emirhan Türkyılmaz</h3>
-          <span style="color:var(--text-muted); font-size:14px; margin-bottom:15px">Game Developer</span>
+          <div class="avatar">ET</div>
+          <div class="meta">
+            <strong style="font-size:18px; display:block; margin-bottom:4px">Emir</strong>
+            <small style="color:var(--text-muted)">Computer Science · Game Developer</small>
+          </div>
           
           <div style="width:100%; height:1px; background:var(--border); margin: 15px 0;"></div>
           
-          <div style="text-align:left; width:100%; font-size:13px; color:var(--text-muted);">
-            <div style="margin-bottom:8px">🎓 Dokuz Eylul University</div>
-            <div style="margin-bottom:8px">📍 Izmir, Turkey</div>
-            <div>💻 C#, Unity, Discrete Math</div>
+          <div style="font-size:13px; color:var(--text-muted); line-height:1.5">
+             Short bio: I prototype in Unity/C# and build small, playable projects with an emphasis on mechanics and feel.
           </div>
         </aside>
       </section>
 
-      <section id="projects">
+      <section id="about">
         <div class="section-header">
-          <h2>Selected Works</h2>
+          <h3>About</h3>
+          <div class="line"></div>
+        </div>
+        
+        <div class="about-container">
+          <div style="flex:1">
+            <p style="color:var(--text-muted); font-size:16px;">
+              I'm a Computer Science student at Dokuz Eylul University and a game developer — working on mechanics, prototyping and indie game projects.
+            </p>
+            <p style="margin-top:12px;color:var(--text-muted)">Birth year: 2006</p>
+          </div>
+          
+          <div class="skills-box">
+             <strong style="display:block; color:var(--accent); margin-bottom:10px">Skills</strong>
+             <ul style="margin:0; padding-left:20px; color:var(--text-muted); font-size:14px; line-height:1.8">
+                <li>Unity / C#</li>
+                <li>Gameplay prototyping</li>
+                <li>Basic shaders & effects</li>
+             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="games">
+        <div class="section-header">
+          <h3>Games</h3>
           <div class="line"></div>
         </div>
 
         <div class="games-grid">
           
           <article class="game-card">
-            <div class="thumb parkour">PARKOUR PROTOTYPE</div>
+            <div class="thumb">Game 1 — Climbing Theme</div>
             <div class="card-content">
-              <div class="tech-stack">
-                <span class="tech-badge">Unity</span>
-                <span class="tech-badge">Physics</span>
+              <h3>Climb & Slip</h3>
+              <p>Fast prototype — challenging climbing platformer with tight controls and short, dynamic levels.</p>
+              <div class="game-actions">
+                <a class="btn btn-primary btn-sm" href="#">Steam Page</a>
+                <a class="btn btn-outline btn-sm" href="#">Preview</a>
               </div>
-              <h3>Parkour Movement System</h3>
-              <p>A fast-paced platformer focusing on fluid movement mechanics. Includes wall-running, health systems, and restart loops.</p>
-              <a href="#" class="btn btn-outline" style="font-size:12px; margin:0; width:100%">View Project</a>
             </div>
           </article>
 
           <article class="game-card">
-            <div class="thumb horror">FACTORY HORROR</div>
+            <div class="thumb">Game 2 — Mini Puzzle</div>
             <div class="card-content">
-              <div class="tech-stack">
-                <span class="tech-badge">Unity 2D</span>
-                <span class="tech-badge">Pixel Art</span>
+              <h3>Puzzle Drop</h3>
+              <p>Short play sessions with minimal visuals and deeper mechanics.</p>
+              <div class="game-actions">
+                <a class="btn btn-primary btn-sm" href="#">Steam Page</a>
+                <a class="btn btn-outline btn-sm" href="#">Preview</a>
               </div>
-              <h3>The Factory Incident</h3>
-              <p>Atmospheric 2D horror game featuring custom pixel art assets. Explores tension through lighting and environmental storytelling.</p>
-              <a href="#" class="btn btn-outline" style="font-size:12px; margin:0; width:100%">View Project</a>
             </div>
           </article>
-
-          <article class="game-card">
-             <div class="thumb" style="background: #1e293b; font-family: monospace; color: var(--accent)">
-               &lt;CODE /&gt;
-             </div>
-             <div class="card-content">
-               <div class="tech-stack">
-                 <span class="tech-badge">C Language</span>
-                 <span class="tech-badge">Algorithms</span>
-               </div>
-               <h3>Algorithm Library</h3>
-               <p>A collection of C implementations for Discrete Math problems, logic puzzles, and optimized sorting algorithms.</p>
-               <a href="#" class="btn btn-outline" style="font-size:12px; margin:0; width:100%">View Code</a>
-             </div>
-           </article>
 
         </div>
       </section>
+
+      <section id="contact" class="contact-section">
+        <h3>Contact</h3>
+        <p style="color:var(--text-muted)">For games, collaborations or feedback:</p>
+        
+        <div style="font-size:18px; margin: 20px 0; font-weight:700; color:var(--text-main)">
+          emirhan.turkyilmaz@ogr.deu.edu.tr
+        </div>
+
+        <div class="social-links">
+          <a href="https://instagram.com/emirhnturkyilmaz" target="_blank" class="social-btn" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://steamornekkkkkkk.steampowered.com" target="_blank" class="social-btn" title="Steam">
+            <i class="fab fa-steam"></i>
+          </a>
+          <a href="mailto:emirhan.turkyilmaz@ogr.deu.edu.tr" class="social-btn" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </section>
+
     </main>
 
-    <footer>
-      <p>© 2025 Emirhan Türkyılmaz. Built with code & passion.</p>
-      <p style="font-size:12px; opacity:0.6">Assets created in Unity & Aseprite.</p>
+    <footer style="text-align:center; padding:20px 0; color:var(--text-muted); font-size:13px; border-top:1px solid var(--border)">
+      <div>© <strong>Emirhan Türkyılmaz</strong> — Game Creator</div>
     </footer>
   </div>
 
   <script>
-    // Smooth scrolling
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+            target.scrollIntoView({
+            behavior: 'smooth'
+            });
+        }
       });
     });
   </script>
